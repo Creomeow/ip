@@ -1,17 +1,10 @@
-public class Duke {
+public class Meow {
     public static void main(String[] args) {
-        String logo =
-                " __  __                       \n"
-                        + "|  \\/  |  ___   ___  _ __      \n"
-                        + "| |\\/| | / _ \\ / _ \\| '_ \\ \n"
-                        + "| |  | | | __/ |(_)| |_) |    \n"
-                        + "|_|  |_| \\___| \\___/| .__/ \n"
-                        + "                  |_|        \n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("______________________________________");
+        System.out.println("Hello! I'm Meow");
+        System.out.println("What can I do for you?");
+        System.out.println("______________________________________");
+        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("______________________________________");
     }
 }
-String logo = " ____        _        \n"
-        + "|  _ \\ _   _| | _____ \n"
-        + "| | | | | | | |/ / _ \\\n"
-        + "| |_| | |_| |   <  __/\n"
-        + "|____/ \\__,_|_|\\_\\___|\n";
