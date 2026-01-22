@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Meow {
-    private ArrayList<String> tasks;
+    private ArrayList<Task> tasks;
     private boolean isActive;
 
     public Meow() {
@@ -17,11 +17,11 @@ public class Meow {
         this.isActive = false;
     }
 
-    public ArrayList<String> getTasks() {
+    public ArrayList<Task> getTasks() {
         return tasks;
     }
 
     public void addTask(String task) {
-        tasks.add(task);
+        tasks.add(new Task(task));
     }
 }
