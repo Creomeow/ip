@@ -21,7 +21,7 @@ public class Meowtput {
 
     public void showAddedTask(Task task, int taskCount) {
         line();
-        System.out.println("Got it. I've added this task: ");
+        System.out.println("Got it. I've added this task:");
         System.out.println(task);
         System.out.println("Now you have " + taskCount + " tasks in the list.");
         line();
