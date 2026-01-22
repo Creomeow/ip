@@ -20,18 +20,22 @@ public class Meowtput {
     }
 
     public void showAddedTask(String task) {
+        line();
         System.out.println("added: " + task);
+        line();
     }
 
-    public void showTasks(ArrayList<String> tasks) {
+    public void showTasks(ArrayList<Task> tasks) {
         if (tasks.isEmpty()) {
             line();
             System.out.println("You do not have any tasks.");
             line();
         }
 
+        line();
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + ". " + tasks.get(i));
         }
+        line();
     }
 }
