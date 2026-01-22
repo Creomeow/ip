@@ -21,7 +21,7 @@ public class Meow {
         return tasks;
     }
 
-    public void addTask(String task) {
-        tasks.add(new Task(task));
+    public void addTask(Task task) {
+        tasks.add(task);
     }
 }
