@@ -60,4 +60,13 @@ public class Meowtput {
         line();
     }
 
+    public void showDeletedTask(Task task, int newTaskCount) {
+        line();
+        System.out.println(" Noted. I've removed this task:");
+        System.out.println("   " + task);
+        System.out.println(" Now you have " + newTaskCount + " tasks in the list.");
+        line();
+    }
+
+
 }
