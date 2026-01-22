@@ -19,15 +19,15 @@ public class Meowtput {
         line();
     }
 
-    public void showTasks(ArrayList<String> list) {
-        if (list.isEmpty()) {
+    public void showTasks(ArrayList<String> tasks) {
+        if (tasks.isEmpty()) {
             line();
             System.out.println("You do not have any tasks.");
             line();
         }
 
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println((i + 1) + ". " + list.get(i));
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println((i + 1) + ". " + tasks.get(i));
         }
     }
 }
