@@ -20,4 +20,8 @@ public class Meow {
     public ArrayList<String> getTasks() {
         return tasks;
     }
+
+    public void addTask(String task) {
+        tasks.add(task);
+    }
 }

@@ -19,6 +19,10 @@ public class Meowtput {
         line();
     }
 
+    public void showAddedTask(String task) {
+        System.out.println("added: " + task);
+    }
+
     public void showTasks(ArrayList<String> tasks) {
         if (tasks.isEmpty()) {
             line();
