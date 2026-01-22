@@ -82,7 +82,7 @@ public class MeowBot {
             meowtput.showAddedTask(event, meow.getTasks().size());
         } else {
             meowtput.line();
-            throw new MeowException("Meow! I'm sorry, but I don't know what that means :-( ");
+            throw new MeowException("Meow! I'm sorry, but I don't know what that means :-(");
         }
     }
 }
