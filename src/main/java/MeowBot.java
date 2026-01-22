@@ -80,6 +80,21 @@ public class MeowBot {
             Task event = new Event(parts[0], parts[1], parts[2]);
             meow.addTask(event);
             meowtput.showAddedTask(event, meow.getTasks().size());
+        } else if (input.startsWith("delete")) {
+            String desc = input.substring(7);
+            if (desc.isEmpty()) {
+                meowtput.line();
+                throw new MeowException("Meow! Please provide a task to delete.");
+            }
+
+            int index = Integer.parseInt(input.substring(7).trim()) - 1;
+            if (index < 0 || index >= meow.getTasks().size()) {
+                meowtput.line();
+                throw new MeowException("Meow! That task number doesn't exist.");
+            }
+
+            Task removed = meow.getTasks().remove(index);
+            meowtput.showDeletedTask(removed, meow.getTasks().size());
         } else {
             meowtput.line();
             throw new MeowException("Meow! I'm sorry, but I don't know what that means :-(");
