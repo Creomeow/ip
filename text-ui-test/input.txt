@@ -8,5 +8,7 @@ unmark 2
 mark 4
 unmark 4
 list
+delete 2
+delete 2
 meow
 bye
