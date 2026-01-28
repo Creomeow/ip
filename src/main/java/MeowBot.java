@@ -15,6 +15,10 @@ public class MeowBot {
 
         Meowtput.greeting();
 
+        if (!meow.getTasks().isEmpty()) {
+            Meowtput.showTasks(meow.getTasks());
+        }
+
         while (meow.isActive() && sc.hasNextLine()) {
             String input = sc.nextLine();
             String lower = input.toLowerCase();
