@@ -8,7 +8,7 @@ public class MeowParser {
 
     public static ParsedInput parse(String input) throws MeowException {
         if (input.isEmpty()) {
-            throw new MeowException("meow.Meow! Please type a command.");
+            throw new MeowException("Please type a command.");
         }
 
         String[] parts = input.split("\\s+", 2);
@@ -33,7 +33,7 @@ public class MeowParser {
 
             case "todo":
                 if (args.isEmpty()) {
-                    throw new MeowException("meow.Meow! The description of a todo cannot be empty.");
+                    throw new MeowException("The description of a todo cannot be empty.");
                 }
                 return ParsedInput.todo(args);
 
@@ -44,30 +44,29 @@ public class MeowParser {
                 return parseEvent(args);
 
             default:
-                throw new MeowException("meow.Meow! I'm sorry, but I don't know what that means :-(");
+                throw new MeowException("I'm sorry, but I don't know what that means :-(");
         }
     }
 
     private static int parseIndex(String args, String cmd) throws MeowException {
         if (args.isEmpty()) {
-            throw new MeowException("meow.Meow! Please provide a task number. Example: " + cmd + " 2");
+            throw new MeowException("Please provide a task number. Example: " + cmd + " 2");
         }
         try {
             int index = Integer.parseInt(args);
             if (index <= 0) {
-                throw new MeowException("meow.Meow! meow.task.Task number must be 1 or bigger.");
+                throw new MeowException("Task number must be 1 or bigger.");
             }
             return index;
         } catch (NumberFormatException e) {
-            throw new MeowException("meow.Meow! Please provide a valid number. Example: " + cmd + " 2");
+            throw new MeowException("Please provide a valid number. Example: " + cmd + " 2");
         }
     }
 
     private static ParsedInput parseDeadline(String args) throws MeowException {
         String[] dParts = args.split("\\s*/by\\s*", 2);
         if (args.isEmpty() || dParts.length < 2 || dParts[0].isEmpty() || dParts[1].isEmpty()) {
-            throw new MeowException("meow.Meow! "
-                    + "meow.task.Deadline format: deadline <description> /by <yyyy-mm-dd>");
+            throw new MeowException("Deadline format: deadline <description> /by <yyyy-mm-dd>");
         }
 
         String description = dParts[0].trim();
@@ -78,8 +77,7 @@ public class MeowParser {
     private static ParsedInput parseEvent(String args) throws MeowException {
         String[] fromParts = args.split("\\s*/from\\s*", 2);
         if (args.isEmpty() || fromParts.length < 2 || fromParts[0].isEmpty()) {
-            throw new MeowException("meow.Meow!"
-                    + "meow.task.Event format: event <description> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
+            throw new MeowException("Event format: event <description> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
         }
 
         String description = fromParts[0];
@@ -87,8 +85,7 @@ public class MeowParser {
         String[] toParts = rest.split("\\s*/to\\s*", 2);
 
         if (toParts.length < 2 || toParts[0].isEmpty() || toParts[1].isEmpty()) {
-            throw new MeowException("meow.Meow!"
-                    + "meow.task.Event format: event <desc> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
+            throw new MeowException("Event format: event <desc> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
         }
 
         LocalDate start = DateTimeUtil.parseDate(toParts[0]);
