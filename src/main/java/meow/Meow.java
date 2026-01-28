@@ -38,7 +38,7 @@ public class Meow {
         int index = oneBasedIndex - 1;
 
         if (index < 0 || index >= tasks.size()) {
-            throw new MeowException("meow.Meow! That task number doesn't exist.");
+            throw new MeowException("That task number doesn't exist.");
         }
 
         return tasks.remove(index);
@@ -48,7 +48,7 @@ public class Meow {
         int index = oneBasedIndex - 1;
 
         if (index < 0 || index >= tasks.size()) {
-            throw new MeowException("meow.Meow! That task number doesn't exist.");
+            throw new MeowException("That task number doesn't exist.");
         }
         return tasks.get(index);
     }
