@@ -5,20 +5,29 @@ public class MeowBot {
         Meow meow = new Meow();
         Meowtput Meowtput = new Meowtput();
         Scanner sc = new Scanner(System.in);
+        Storage storage = new Storage();
+
+        try {
+            meow.setTasks(storage.load());
+        } catch (MeowException e) {
+            Meowtput.showError(e.getMessage());
+        }
 
         Meowtput.greeting();
 
-        while (meow.isActive()) {
-            String input = sc.nextLine().toLowerCase();
+        while (meow.isActive() && sc.hasNextLine()) {
+            String input = sc.nextLine();
+            String lower = input.toLowerCase();
             try {
-                handle(input, meow, Meowtput);
+                handle(input, lower, meow, Meowtput, storage);
             } catch (MeowException e) {
                 Meowtput.showError(e.getMessage());
             }
         }
     }
 
-    private static void handle(String input, Meow meow, Meowtput meowtput) throws MeowException {
+    private static void handle(String input, String lower, Meow meow,
+                               Meowtput meowtput, Storage storage) throws MeowException {
         if (input.startsWith("bye")) {
             meow.exit();
             meowtput.goodbye();
@@ -33,6 +42,7 @@ public class MeowBot {
 
            Task task = meow.getTasks().get(index);
            task.markAsDone();
+           storage.save(meow.getTasks());
            meowtput.showMarked(task);
         } else if (input.startsWith("unmark")) {
             int index = Integer.parseInt(input.substring(7)) - 1;
@@ -43,6 +53,7 @@ public class MeowBot {
 
             Task task = meow.getTasks().get(index);
             task.markAsUndone();
+            storage.save(meow.getTasks());
             meowtput.showUnmarked(task);
         } else if (input.startsWith("todo")) {
             String desc = input.substring(5);
@@ -53,6 +64,7 @@ public class MeowBot {
 
             Task todo = new ToDo(desc);
             meow.addTask(todo);
+            storage.save(meow.getTasks());
             meowtput.showAddedTask(todo, meow.getTasks().size());
         } else if (input.startsWith("deadline")) {
             String[] parts = input.substring(9).split(" /by ");
@@ -63,6 +75,7 @@ public class MeowBot {
 
             Task deadline = new Deadline(parts[0], parts[1]);
             meow.addTask(deadline);
+            storage.save(meow.getTasks());
             meowtput.showAddedTask(deadline, meow.getTasks().size());
         } else if (input.startsWith("event")) {
             String eventFull = input.substring(6);
@@ -79,6 +92,7 @@ public class MeowBot {
 
             Task event = new Event(parts[0], parts[1], parts[2]);
             meow.addTask(event);
+            storage.save(meow.getTasks());
             meowtput.showAddedTask(event, meow.getTasks().size());
         } else if (input.startsWith("delete")) {
             String desc = input.substring(7);
@@ -94,6 +108,7 @@ public class MeowBot {
             }
 
             Task removed = meow.getTasks().remove(index);
+            storage.save(meow.getTasks());
             meowtput.showDeletedTask(removed, meow.getTasks().size());
         } else {
             meowtput.line();
