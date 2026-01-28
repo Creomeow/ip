@@ -9,11 +9,11 @@ public class DateTimeUtil {
     private static final DateTimeFormatter INPUT = DateTimeFormatter.ISO_LOCAL_DATE;
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
-    public static LocalDate parseDate(String raw) throws MeowException {
+    public static LocalDate parseDate(String input) throws MeowException {
         try {
-            return LocalDate.parse(raw.trim(), INPUT);
+            return LocalDate.parse(input, INPUT);
         } catch (DateTimeParseException e) {
-            throw new MeowException("meow.Meow! Please use yyyy-mm-dd (e.g., 2019-10-15).");
+            throw new MeowException("Please use yyyy-mm-dd (e.g., 2019-10-15).");
         }
     }
 
