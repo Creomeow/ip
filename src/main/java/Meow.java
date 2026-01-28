@@ -28,4 +28,14 @@ public class Meow {
     public void setTasks(ArrayList<Task> loaded) {
         this.tasks = loaded;
     }
+
+    public Task deleteTask(int oneBasedIndex) throws MeowException {
+        int index = oneBasedIndex - 1;
+
+        if (index < 0 || index >= tasks.size()) {
+            throw new MeowException("Meow! That task number doesn't exist.");
+        }
+
+        return tasks.remove(index);
+    }
 }
