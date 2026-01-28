@@ -13,7 +13,7 @@ public class Deadline extends Task {
     }
 
     public String getBy() {
-        return by;
+        return this.by;
     }
 }
 
