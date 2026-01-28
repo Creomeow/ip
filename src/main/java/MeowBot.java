@@ -72,12 +72,15 @@ public class MeowBot {
             meowtput.showAddedTask(todo, meow.getTasks().size());
         } else if (input.startsWith("deadline")) {
             String[] parts = input.substring(9).split(" /by ");
-            if (parts[1].isEmpty()) {
+            if (parts.length < 2 || parts[0].isEmpty() || parts[1].isEmpty()) {
                 meowtput.line();
-                throw new MeowException("Meow! The deadline cannot be empty.");
+                throw new MeowException("Meow! Deadline format: deadline <desc> /by <yyyy-mm-dd>");
             }
 
-            Task deadline = new Deadline(parts[0], parts[1]);
+            String description = parts[0];
+            String by = parts[1];
+            java.time.LocalDate byLocalDate = DateTimeUtil.parseDate(by);
+            Task deadline = new Deadline(description, byLocalDate);
             meow.addTask(deadline);
             storage.save(meow.getTasks());
             meowtput.showAddedTask(deadline, meow.getTasks().size());
@@ -94,7 +97,14 @@ public class MeowBot {
                 throw new MeowException("Meow! The end of an event cannot be empty.");
             }
 
-            Task event = new Event(parts[0], parts[1], parts[2]);
+            String description = parts[0];
+            String start = parts[1];
+            String end = parts[2];
+            java.time.LocalDate startLocalDate = DateTimeUtil.parseDate(start);
+            java.time.LocalDate endLocalDate = DateTimeUtil.parseDate(end);
+
+
+            Task event = new Event(description, startLocalDate, endLocalDate);
             meow.addTask(event);
             storage.save(meow.getTasks());
             meowtput.showAddedTask(event, meow.getTasks().size());
