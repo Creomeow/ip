@@ -27,16 +27,16 @@ Here are the tasks in your list:
 2. [D][ ] return book (by: Dec 01 2025)
 3. [E][ ] project meeting (from: Dec 01 2025 to: Dec 02 2025)
 ______________________________________
+______________________________________
 Nice! I've marked this task as done:
   [D][X] return book (by: Dec 01 2025)
+______________________________________
 ______________________________________
 OK, I've marked this task as not done yet:
   [D][ ] return book (by: Dec 01 2025)
 ______________________________________
 ______________________________________
-______________________________________
  OOPS! Meow! That task number doesn't exist.
-______________________________________
 ______________________________________
 ______________________________________
  OOPS! Meow! That task number doesn't exist.
@@ -56,7 +56,6 @@ ______________________________________
  Noted. I've removed this task:
    [E][ ] project meeting (from: Dec 01 2025 to: Dec 02 2025)
  Now you have 1 tasks in the list.
-______________________________________
 ______________________________________
 ______________________________________
  OOPS! Meow! I'm sorry, but I don't know what that means :-(
