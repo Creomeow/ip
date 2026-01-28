@@ -1,8 +1,10 @@
-public class Event extends Task {
-    private String start;
-    private String end;
+import java.time.LocalDate;
 
-    public Event(String description, String start, String end) {
+public class Event extends Task {
+    private LocalDate start;
+    private LocalDate end;
+
+    public Event(String description, LocalDate start, LocalDate end) {
         super(description);
         this.start = start;
         this.end = end;
@@ -13,11 +15,11 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (from: " + start + " to: " + end + ")";
     }
 
-    public String getStart() {
+    public LocalDate getStart() {
         return this.start;
     }
 
-    public String getEnd() {
+    public LocalDate getEnd() {
         return this.end;
     }
 }
