@@ -12,7 +12,7 @@ public class Meowtput {
 
     public void greeting() {
         line();
-        System.out.println("Hello! I'm meow.Meow");
+        System.out.println("Hello! I'm Meow");
         System.out.println("What can I do for you?");
         line();
     }
@@ -49,7 +49,7 @@ public class Meowtput {
 
     public void showError(String message) {
         line();
-        System.out.println(" OOPS! " + message);
+        System.out.println(" MEOW! " + message);
         line();
     }
 

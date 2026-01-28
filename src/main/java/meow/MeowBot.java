@@ -105,7 +105,7 @@ public class MeowBot {
             }
 
             default:
-                throw new MeowException("meow.Meow! Unknown command.");
+                throw new MeowException("MEOW! Unknown command.");
         }
     }
 }
