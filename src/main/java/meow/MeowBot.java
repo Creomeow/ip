@@ -1,3 +1,15 @@
+package meow;
+
+import meow.exception.MeowException;
+import meow.parser.MeowParser;
+import meow.parser.ParsedInput;
+import meow.storage.Storage;
+import meow.task.Deadline;
+import meow.task.Event;
+import meow.task.Task;
+import meow.task.ToDo;
+import meow.ui.Meowtput;
+
 import java.util.Scanner;
 
 public class MeowBot {
@@ -93,7 +105,7 @@ public class MeowBot {
             }
 
             default:
-                throw new MeowException("Meow! Unknown command.");
+                throw new MeowException("meow.Meow! Unknown command.");
         }
     }
 }

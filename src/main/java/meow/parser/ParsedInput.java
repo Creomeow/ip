@@ -1,3 +1,7 @@
+package meow.parser;
+
+import meow.command.CommandWord;
+
 import java.time.LocalDate;
 
 public class ParsedInput {

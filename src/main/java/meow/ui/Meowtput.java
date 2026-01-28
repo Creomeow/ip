@@ -1,3 +1,7 @@
+package meow.ui;
+
+import meow.task.Task;
+
 import java.util.ArrayList;
 
 public class Meowtput {
@@ -8,7 +12,7 @@ public class Meowtput {
 
     public void greeting() {
         line();
-        System.out.println("Hello! I'm Meow");
+        System.out.println("Hello! I'm meow.Meow");
         System.out.println("What can I do for you?");
         line();
     }

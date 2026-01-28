@@ -1,3 +1,11 @@
+package meow.storage;
+
+import meow.task.Deadline;
+import meow.task.Event;
+import meow.task.Task;
+import meow.task.ToDo;
+import meow.exception.MeowException;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -29,7 +37,7 @@ public class Storage {
                 tasks.add(parseTask(line));
             }
         } catch (IOException e) {
-            throw new MeowException("Meow! I couldn't load your saved tasks.");
+            throw new MeowException("meow.Meow! I couldn't load your saved tasks.");
         }
 
         return tasks;
@@ -46,7 +54,7 @@ public class Storage {
                 }
             }
         } catch (IOException e) {
-            throw new MeowException("Meow! I couldn't save your tasks.");
+            throw new MeowException("meow.Meow! I couldn't save your tasks.");
         }
     }
 
@@ -54,7 +62,7 @@ public class Storage {
         String[] parts = line.split(" \\| ");
 
         if (parts.length < 3) {
-            throw new MeowException("Meow! Corrupted save line: " + line);
+            throw new MeowException("meow.Meow! Corrupted save line: " + line);
         }
 
         String type = parts[0];
@@ -66,20 +74,20 @@ public class Storage {
                 task = new ToDo(parts[2]);
                 break;
             case "D":
-                if (parts.length < 4) throw new MeowException("Meow! "
+                if (parts.length < 4) throw new MeowException("meow.Meow! "
                         + "Corrupted deadline line: " + line);
                 LocalDate by = LocalDate.parse(parts[3]);
                 task = new Deadline(parts[2], by);
                 break;
             case "E":
-                if (parts.length < 5) throw new MeowException("Meow! "
+                if (parts.length < 5) throw new MeowException("meow.Meow! "
                         + "Corrupted event line: " + line);
                 LocalDate start = LocalDate.parse(parts[3].trim());
                 LocalDate end = LocalDate.parse(parts[4].trim());
                 task = new Event(parts[2], start, end);
                 break;
             default:
-                throw new MeowException("Meow! Unknown task type in save file: " + type);
+                throw new MeowException("meow.Meow! Unknown task type in save file: " + type);
         }
 
         if (isDone) {
@@ -103,7 +111,7 @@ public class Storage {
                     + " | " + e.getStart().toString() + " | " + e.getEnd().toString();
         }
 
-        throw new MeowException("Meow! Unknown task type: " + t.getClass().getName());
+        throw new MeowException("meow.Meow! Unknown task type: " + t.getClass().getName());
     }
 }
 

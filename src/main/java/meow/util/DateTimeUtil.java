@@ -1,3 +1,6 @@
+package meow.util;
+
+import meow.exception.MeowException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -10,7 +13,7 @@ public class DateTimeUtil {
         try {
             return LocalDate.parse(raw.trim(), INPUT);
         } catch (DateTimeParseException e) {
-            throw new MeowException("Meow! Please use yyyy-mm-dd (e.g., 2019-10-15).");
+            throw new MeowException("meow.Meow! Please use yyyy-mm-dd (e.g., 2019-10-15).");
         }
     }
 
