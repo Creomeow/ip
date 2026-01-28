@@ -38,4 +38,13 @@ public class Meow {
 
         return tasks.remove(index);
     }
+
+    public Task getTask(int oneBasedIndex) throws MeowException {
+        int index = oneBasedIndex - 1;
+
+        if (index < 0 || index >= tasks.size()) {
+            throw new MeowException("Meow! That task number doesn't exist.");
+        }
+        return tasks.get(index);
+    }
 }
