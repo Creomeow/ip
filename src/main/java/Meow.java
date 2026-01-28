@@ -24,4 +24,8 @@ public class Meow {
     public void addTask(Task task) {
         tasks.add(task);
     }
+
+    public void setTasks(ArrayList<Task> loaded) {
+        this.tasks = loaded;
+    }
 }
