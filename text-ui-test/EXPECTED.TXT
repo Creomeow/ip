@@ -36,10 +36,10 @@ OK, I've marked this task as not done yet:
   [D][ ] return book (by: Dec 01 2025)
 ______________________________________
 ______________________________________
- OOPS! Meow! That task number doesn't exist.
+ MEOW! That task number doesn't exist.
 ______________________________________
 ______________________________________
- OOPS! Meow! That task number doesn't exist.
+ MEOW! That task number doesn't exist.
 ______________________________________
 ______________________________________
 Here are the tasks in your list:
@@ -58,10 +58,10 @@ ______________________________________
  Now you have 1 tasks in the list.
 ______________________________________
 ______________________________________
- OOPS! Meow! I'm sorry, but I don't know what that means :-(
+ MEOW! I'm sorry, but I don't know what that means :-(
 ______________________________________
 ______________________________________
- OOPS! Meow! Please use yyyy-mm-dd (e.g., 2019-10-15).
+ MEOW! Please use yyyy-mm-dd (e.g., 2019-10-15).
 ______________________________________
 ______________________________________
  Noted. I've removed this task:
