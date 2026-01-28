@@ -32,6 +32,7 @@ public class Meowtput {
             line();
             System.out.println("You do not have any tasks.");
             line();
+            return;
         }
 
         line();
