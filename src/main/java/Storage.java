@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Storage {
     private final Path filePath;
@@ -57,7 +58,7 @@ public class Storage {
         }
 
         String type = parts[0];
-        boolean done = parts[1].equals("1");
+        boolean isDone = parts[1].equals("1");
 
         Task task;
         switch (type) {
@@ -67,18 +68,21 @@ public class Storage {
             case "D":
                 if (parts.length < 4) throw new MeowException("Meow! "
                         + "Corrupted deadline line: " + line);
-                task = new Deadline(parts[2], parts[3]);
+                LocalDate by = LocalDate.parse(parts[3]);
+                task = new Deadline(parts[2], by);
                 break;
             case "E":
                 if (parts.length < 5) throw new MeowException("Meow! "
                         + "Corrupted event line: " + line);
-                task = new Event(parts[2], parts[3], parts[4]);
+                LocalDate start = LocalDate.parse(parts[3].trim());
+                LocalDate end = LocalDate.parse(parts[4].trim());
+                task = new Event(parts[2], start, end);
                 break;
             default:
                 throw new MeowException("Meow! Unknown task type in save file: " + type);
         }
 
-        if (done) {
+        if (isDone) {
             task.markAsDone();
         }
 
@@ -92,11 +96,11 @@ public class Storage {
             return "T | " + doneFlag + " | " + t.getDescription();
         } else if (t instanceof Deadline) {
             Deadline d = (Deadline) t;
-            return "D | " + doneFlag + " | " + d.getDescription() + " | " + d.getBy();
+            return "D | " + doneFlag + " | " + d.getDescription() + " | " + d.getBy().toString();
         } else if (t instanceof Event) {
             Event e = (Event) t;
             return "E | " + doneFlag + " | " + e.getDescription()
-                    + " | " + e.getStart() + " | " + e.getEnd();
+                    + " | " + e.getStart().toString() + " | " + e.getEnd().toString();
         }
 
         throw new MeowException("Meow! Unknown task type: " + t.getClass().getName());
