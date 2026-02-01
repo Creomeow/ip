@@ -122,7 +122,7 @@ public class MeowOutput {
      * @param task the task that was deleted
      * @param newTaskCount the total number of tasks after deletion
      */
-    
+
     public void showDeletedTask(Task task, int newTaskCount) {
         line();
         System.out.println(" Noted. I've removed this task:");
