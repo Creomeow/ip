@@ -1,10 +1,24 @@
 package meow.parser;
 
-import meow.util.DateTimeUtil;
-import meow.exception.MeowException;
 import java.time.LocalDate;
 
+import meow.util.DateTimeUtil;
+import meow.exception.MeowException;
+
+/**
+ * Parser for user input commands in the MeowBot application.
+ * Converts raw user input strings into structured ParsedInput objects.
+ */
+
 public class MeowParser {
+
+    /**
+     * Parses a user input string into a ParsedInput object.
+     *
+     * @param input the raw user input string
+     * @return a ParsedInput object representing the parsed command
+     * @throws MeowException if the input is empty or contains an invalid command
+     */
 
     public static ParsedInput parse(String input) throws MeowException {
         if (input.isEmpty()) {
@@ -16,37 +30,46 @@ public class MeowParser {
         String args = (parts.length == 2) ? parts[1].trim() : "";
 
         switch (commandWord) {
-            case "bye":
-                return ParsedInput.bye();
+        case "bye":
+            return ParsedInput.bye();
 
-            case "list":
-                return ParsedInput.list();
+        case "list":
+            return ParsedInput.list();
 
-            case "mark":
-                return ParsedInput.mark(parseIndex(args, "mark"));
+        case "mark":
+            return ParsedInput.mark(parseIndex(args, "mark"));
 
-            case "unmark":
-                return ParsedInput.unmark(parseIndex(args, "unmark"));
+        case "unmark":
+            return ParsedInput.unmark(parseIndex(args, "unmark"));
 
-            case "delete":
-                return ParsedInput.delete(parseIndex(args, "delete"));
+        case "delete":
+            return ParsedInput.delete(parseIndex(args, "delete"));
 
-            case "todo":
-                if (args.isEmpty()) {
-                    throw new MeowException("The description of a todo cannot be empty.");
-                }
-                return ParsedInput.todo(args);
+        case "todo":
+            if (args.isEmpty()) {
+                throw new MeowException("The description of a todo cannot be empty.");
+            }
+            return ParsedInput.todo(args);
 
-            case "deadline":
-                return parseDeadline(args);
+        case "deadline":
+            return parseDeadline(args);
 
-            case "event":
-                return parseEvent(args);
+        case "event":
+            return parseEvent(args);
 
-            default:
-                throw new MeowException("I'm sorry, but I don't know what that means :-(");
+        default:
+            throw new MeowException("I'm sorry, but I don't know what that means :-(");
         }
     }
+
+    /**
+     * Parses and validates a task index from the provided arguments.
+     *
+     * @param args the argument string containing the task number
+     * @param cmd the command name (used in error messages)
+     * @return the parsed task index (1-based)
+     * @throws MeowException if args is empty, not a valid number, or is zero or negative
+     */
 
     private static int parseIndex(String args, String cmd) throws MeowException {
         if (args.isEmpty()) {
@@ -63,6 +86,14 @@ public class MeowParser {
         }
     }
 
+    /**
+     * Parses deadline command arguments into a deadline task.
+     *
+     * @param args the argument string in format "description /by yyyy-mm-dd"
+     * @return a ParsedInput object for the deadline task
+     * @throws MeowException if format is invalid or date cannot be parsed
+     */
+
     private static ParsedInput parseDeadline(String args) throws MeowException {
         String[] dParts = args.split("\\s*/by\\s*", 2);
         if (args.isEmpty() || dParts.length < 2 || dParts[0].isEmpty() || dParts[1].isEmpty()) {
@@ -73,6 +104,14 @@ public class MeowParser {
         LocalDate by = DateTimeUtil.parseDate(dParts[1].trim());
         return ParsedInput.deadline(description, by);
     }
+
+    /**
+     * Parses event command arguments into an event task.
+     *
+     * @param args the argument string in format "description /from yyyy-mm-dd /to yyyy-mm-dd"
+     * @return a ParsedInput object for the event task
+     * @throws MeowException if format is invalid or dates cannot be parsed
+     */
 
     private static ParsedInput parseEvent(String args) throws MeowException {
         String[] fromParts = args.split("\\s*/from\\s*", 2);
