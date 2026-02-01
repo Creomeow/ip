@@ -111,7 +111,7 @@ public class MeowParser {
      * @return a ParsedInput object for the event task
      * @throws MeowException if format is invalid or dates cannot be parsed
      */
-    
+
     private static ParsedInput parseEvent(String args) throws MeowException {
         String[] fromParts = args.split("\\s*/from\\s*", 2);
         if (args.isEmpty() || fromParts.length < 2 || fromParts[0].isEmpty()) {
