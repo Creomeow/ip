@@ -38,21 +38,21 @@ public class MeowParserTest {
     void parse_mark_validIndex_success() throws Exception {
         ParsedInput p = MeowParser.parse("mark 2");
         assertEquals(CommandWord.MARK, p.command);
-        assertEquals(2, p.index);
+        assertEquals(2, p.getIndex());
     }
 
     @Test
     void parse_unmark_validIndex_success() throws Exception {
         ParsedInput p = MeowParser.parse("unmark 3");
         assertEquals(CommandWord.UNMARK, p.command);
-        assertEquals(3, p.index);
+        assertEquals(3, p.getIndex());
     }
 
     @Test
     void parse_delete_validIndex_success() throws Exception {
         ParsedInput p = MeowParser.parse("delete 1");
         assertEquals(CommandWord.DELETE, p.command);
-        assertEquals(1, p.index);
+        assertEquals(1, p.getIndex());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class MeowParserTest {
     void parse_todo_success() throws Exception {
         ParsedInput p = MeowParser.parse("todo borrow book");
         assertEquals(CommandWord.TODO, p.command);
-        assertEquals("borrow book", p.description);
+        assertEquals("borrow book", p.getDescription());
     }
 
     @Test
@@ -90,8 +90,8 @@ public class MeowParserTest {
     void parse_deadline_success() throws Exception {
         ParsedInput p = MeowParser.parse("deadline return book /by 2019-10-15");
         assertEquals(CommandWord.DEADLINE, p.command);
-        assertEquals("return book", p.description);
-        assertEquals(LocalDate.of(2019, 10, 15), p.by);
+        assertEquals("return book", p.getDescription());
+        assertEquals(LocalDate.of(2019, 10, 15), p.getBy());
     }
 
     @Test
@@ -112,9 +112,9 @@ public class MeowParserTest {
     void parse_event_success() throws Exception {
         ParsedInput p = MeowParser.parse("event project meeting /from 2019-10-15 /to 2019-10-16");
         assertEquals(CommandWord.EVENT, p.command);
-        assertEquals("project meeting", p.description);
-        assertEquals(LocalDate.of(2019, 10, 15), p.start);
-        assertEquals(LocalDate.of(2019, 10, 16), p.end);
+        assertEquals("project meeting", p.getDescription());
+        assertEquals(LocalDate.of(2019, 10, 15), p.getStart());
+        assertEquals(LocalDate.of(2019, 10, 16), p.getEnd());
     }
 
     @Test
