@@ -4,13 +4,6 @@ import meow.command.CommandWord;
 
 import java.time.LocalDate;
 
-/**
- * Represents parsed user input containing command information and associated data.
- *
- * This immutable class encapsulates the result of parsing user commands,
- * storing the command type, description, index, and optional date parameters.
- */
-
 public class ParsedInput {
     public final CommandWord command;
 
@@ -20,17 +13,6 @@ public class ParsedInput {
     public final LocalDate start;
     public final LocalDate end;
 
-    /**
-     * Constructs a ParsedInput with the specified command and parameters.
-     *
-     * @param command the command type to execute
-     * @param description the task description (may be null)
-     * @param index the one-based task index (or -1 if not applicable)
-     * @param by the deadline date for deadline tasks (may be null)
-     * @param start the start date for event tasks (may be null)
-     * @param end the end date for event tasks (may be null)
-     */
-    
     private ParsedInput(CommandWord command, String description, int index,
                         LocalDate by, LocalDate start, LocalDate end) {
         this.command = command;
@@ -39,6 +21,26 @@ public class ParsedInput {
         this.by = by;
         this.start = start;
         this.end = end;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public LocalDate getBy() {
+        return by;
+    }
+
+    public LocalDate getStart() {
+        return start;
+    }
+
+    public LocalDate getEnd() {
+        return end;
     }
 
     public static ParsedInput bye() {

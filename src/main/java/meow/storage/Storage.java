@@ -1,11 +1,5 @@
 package meow.storage;
 
-import meow.task.Deadline;
-import meow.task.Event;
-import meow.task.Task;
-import meow.task.ToDo;
-import meow.exception.MeowException;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -15,12 +9,35 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
+import meow.task.Deadline;
+import meow.task.Event;
+import meow.task.Task;
+import meow.task.ToDo;
+import meow.exception.MeowException;
+
+/**
+ * Handles persistent storage of tasks for the MeowBot application.
+ * Manages loading tasks from and saving tasks to a file.
+ */
+
 public class Storage {
     private final Path filePath;
+
+    /**
+     * Constructs a Storage instance with the default file path `data/meow.txt`.
+     */
 
     public Storage() {
         this.filePath = Paths.get("data", "meow.txt");
     }
+
+    /**
+     * Loads tasks from the storage file.
+     * Creates an empty task list if the file does not exist.
+     *
+     * @return an ArrayList of tasks loaded from the file
+     * @throws MeowException if the file cannot be read or contains corrupted data
+     */
 
     public ArrayList<Task> load() throws MeowException {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -33,7 +50,11 @@ public class Storage {
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) continue;
+
+                if (line.isEmpty()) {
+                    continue;
+                }
+
                 tasks.add(parseTask(line));
             }
         } catch (IOException e) {
@@ -42,6 +63,14 @@ public class Storage {
 
         return tasks;
     }
+
+    /**
+     * Saves the given list of tasks to the storage file.
+     * Creates the data directory if it does not exist.
+     *
+     * @param tasks the list of tasks to save
+     * @throws MeowException if the file cannot be written
+     */
 
     public void save(ArrayList<Task> tasks) throws MeowException {
         try {
@@ -58,6 +87,15 @@ public class Storage {
         }
     }
 
+    /**
+     * Parses a single encoded task line from the storage file into a Task object.
+     * Supports ToDo, Deadline, and Event task types.
+     *
+     * @param line the encoded task line to parse
+     * @return the parsed Task object
+     * @throws MeowException if the line is corrupted or contains an unknown task type
+     */
+
     private Task parseTask(String line) throws MeowException {
         String[] parts = line.split(" \\| ");
 
@@ -70,24 +108,30 @@ public class Storage {
 
         Task task;
         switch (type) {
-            case "T":
-                task = new ToDo(parts[2]);
-                break;
-            case "D":
-                if (parts.length < 4) throw new MeowException("meow.Meow! "
+        case "T":
+            task = new ToDo(parts[2]);
+            break;
+        case "D":
+            if (parts.length < 4) {
+                throw new MeowException("meow.Meow! "
                         + "Corrupted deadline line: " + line);
-                LocalDate by = LocalDate.parse(parts[3]);
-                task = new Deadline(parts[2], by);
-                break;
-            case "E":
-                if (parts.length < 5) throw new MeowException("meow.Meow! "
+            }
+
+            LocalDate by = LocalDate.parse(parts[3]);
+            task = new Deadline(parts[2], by);
+            break;
+        case "E":
+            if (parts.length < 5) {
+                throw new MeowException("meow.Meow! "
                         + "Corrupted event line: " + line);
-                LocalDate start = LocalDate.parse(parts[3].trim());
-                LocalDate end = LocalDate.parse(parts[4].trim());
-                task = new Event(parts[2], start, end);
-                break;
-            default:
-                throw new MeowException("meow.Meow! Unknown task type in save file: " + type);
+            }
+
+            LocalDate start = LocalDate.parse(parts[3].trim());
+            LocalDate end = LocalDate.parse(parts[4].trim());
+            task = new Event(parts[2], start, end);
+            break;
+        default:
+            throw new MeowException("meow.Meow! Unknown task type in save file: " + type);
         }
 
         if (isDone) {
@@ -96,6 +140,15 @@ public class Storage {
 
         return task;
     }
+
+    /**
+     * Encodes a Task object into a string format for storage.
+     * Format: `<type> | <isDone> | <description> | <optional dates>`
+     *
+     * @param t the task to encode
+     * @return the encoded task string
+     * @throws MeowException if the task type is unknown
+     */
 
     private String encodeTask(Task t) throws MeowException {
         String doneFlag = (t.isDone()) ? "1" : "0";

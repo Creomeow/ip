@@ -1,8 +1,14 @@
 package meow.parser;
 
+import java.time.LocalDate;
+
 import meow.util.DateTimeUtil;
 import meow.exception.MeowException;
-import java.time.LocalDate;
+
+/**
+ * Parser for user input commands in the MeowBot application.
+ * Converts raw user input strings into structured ParsedInput objects.
+ */
 
 /**
  * Parser for user input commands in the MeowBot application.
@@ -29,35 +35,35 @@ public class MeowParser {
         String args = (parts.length == 2) ? parts[1].trim() : "";
 
         switch (commandWord) {
-            case "bye":
-                return ParsedInput.bye();
+        case "bye":
+            return ParsedInput.bye();
 
-            case "list":
-                return ParsedInput.list();
+        case "list":
+            return ParsedInput.list();
 
-            case "mark":
-                return ParsedInput.mark(parseIndex(args, "mark"));
+        case "mark":
+            return ParsedInput.mark(parseIndex(args, "mark"));
 
-            case "unmark":
-                return ParsedInput.unmark(parseIndex(args, "unmark"));
+        case "unmark":
+            return ParsedInput.unmark(parseIndex(args, "unmark"));
 
-            case "delete":
-                return ParsedInput.delete(parseIndex(args, "delete"));
+        case "delete":
+            return ParsedInput.delete(parseIndex(args, "delete"));
 
-            case "todo":
-                if (args.isEmpty()) {
-                    throw new MeowException("The description of a todo cannot be empty.");
-                }
-                return ParsedInput.todo(args);
+        case "todo":
+            if (args.isEmpty()) {
+                throw new MeowException("The description of a todo cannot be empty.");
+            }
+            return ParsedInput.todo(args);
 
-            case "deadline":
-                return parseDeadline(args);
+        case "deadline":
+            return parseDeadline(args);
 
-            case "event":
-                return parseEvent(args);
+        case "event":
+            return parseEvent(args);
 
-            default:
-                throw new MeowException("I'm sorry, but I don't know what that means :-(");
+        default:
+            throw new MeowException("I'm sorry, but I don't know what that means :-(");
         }
     }
 
