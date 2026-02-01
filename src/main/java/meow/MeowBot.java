@@ -12,6 +12,11 @@ import meow.ui.Meowtput;
 
 import java.util.Scanner;
 
+/**
+ * Main entry point for the MeowBot application.
+ * Manages the command loop, user interactions, and task execution.
+ */
+
 public class MeowBot {
     public static void main (String[] args) {
         Meow meow = new Meow();
@@ -42,6 +47,17 @@ public class MeowBot {
             }
         }
     }
+
+    /**
+     * Executes a parsed command and performs the corresponding action.
+     * Handles task operations (add, mark, delete, etc.) and saves changes to storage.
+     *
+     * @param parsed the parsed command input
+     * @param meow the Meow task manager instance
+     * @param meowtput the output handler
+     * @param storage the storage handler for persisting tasks
+     * @throws MeowException if the command cannot be executed or is unknown
+     */
 
     private static void execute(
             ParsedInput parsed, Meow meow, Meowtput meowtput, Storage storage) throws MeowException {
