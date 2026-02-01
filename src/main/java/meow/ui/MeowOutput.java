@@ -1,10 +1,15 @@
 package meow.ui;
 
-import meow.task.Task;
-
 import java.util.ArrayList;
 
-public class Meowtput {
+import meow.task.Task;
+
+/**
+ * Output handler for the MeowBot application.
+ * Manages all user interface messages and task display formatting.
+ */
+
+public class MeowOutput {
 
     public void line() {
         System.out.println("______________________________________");
