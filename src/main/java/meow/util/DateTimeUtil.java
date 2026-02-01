@@ -5,9 +5,22 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Utility class for parsing and formatting dates in the MeowBot application.
+ * Handles conversion between string representations and LocalDate objects.
+ */
+
 public class DateTimeUtil {
     private static final DateTimeFormatter INPUT = DateTimeFormatter.ISO_LOCAL_DATE;
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("MMM dd yyyy");
+
+    /**
+     * Parses a date string in yyyy-mm-dd format into a LocalDate object.
+     *
+     * @param input the date string to parse in format yyyy-mm-dd
+     * @return a LocalDate object representing the parsed date
+     * @throws MeowException if the input string is not in the correct format
+     */
 
     public static LocalDate parseDate(String input) throws MeowException {
         try {
@@ -17,6 +30,13 @@ public class DateTimeUtil {
         }
     }
 
+    /**
+     * Formats a LocalDate object into a readable string representation.
+     *
+     * @param date the LocalDate to format
+     * @return a formatted date string in "MMM dd yyyy" format (e.g., "Oct 15 2019")
+     */
+    
     public static String formatDate(LocalDate date) {
         return date.format(OUTPUT);
     }
