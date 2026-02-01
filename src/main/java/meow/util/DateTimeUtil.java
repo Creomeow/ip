@@ -36,7 +36,7 @@ public class DateTimeUtil {
      * @param date the LocalDate to format
      * @return a formatted date string in "MMM dd yyyy" format (e.g., "Oct 15 2019")
      */
-    
+
     public static String formatDate(LocalDate date) {
         return date.format(OUTPUT);
     }
