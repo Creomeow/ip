@@ -10,6 +10,7 @@ import java.time.LocalDate;
  * This immutable class encapsulates the result of parsing user commands,
  * storing the command type, description, index, and optional date parameters.
  */
+
 public class ParsedInput {
     public final CommandWord command;
 
