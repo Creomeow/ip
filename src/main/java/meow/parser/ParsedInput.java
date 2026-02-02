@@ -74,4 +74,8 @@ public class ParsedInput {
     public static ParsedInput event(String description, LocalDate start, LocalDate end) {
         return new ParsedInput(CommandWord.EVENT, description, -1, null, start, end);
     }
+
+    public static ParsedInput find(String keyword) {
+        return new ParsedInput(CommandWord.FIND, keyword, -1, null, null, null);
+    }
 }
