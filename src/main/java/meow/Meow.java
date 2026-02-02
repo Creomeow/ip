@@ -106,4 +106,24 @@ public class Meow {
         }
         return tasks.get(index);
     }
+    
+    /**
+     * Finds the indices of tasks that contain the specified command string in their description.
+     *
+     * @param cmd the command string to search for
+     * @return an ArrayList of indices of matching tasks
+     */
+
+    public ArrayList<Integer> findTaskIndices(String cmd) {
+        ArrayList<Integer> matches = new ArrayList<>();
+        String command = cmd.toLowerCase();
+
+        for (int i = 0; i < tasks.size(); i++) {
+            String taskToCompare = tasks.get(i).getDescription().toLowerCase();
+            if (taskToCompare.contains(command)) {
+                matches.add(i);
+            }
+        }
+        return matches;
+    }
 }
