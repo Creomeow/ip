@@ -106,7 +106,7 @@ public class Meow {
         }
         return tasks.get(index);
     }
-    
+
     /**
      * Finds the indices of tasks that contain the specified command string in their description.
      *
