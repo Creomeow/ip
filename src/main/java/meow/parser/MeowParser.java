@@ -62,6 +62,12 @@ public class MeowParser {
         case "event":
             return parseEvent(args);
 
+        case "find":
+            if (args.isEmpty()) {
+                throw new MeowException("What am I supposed to find?");
+            }
+            return ParsedInput.find(args);
+
         default:
             throw new MeowException("I'm sorry, but I don't know what that means :-(");
         }
