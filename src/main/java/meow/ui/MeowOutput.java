@@ -131,5 +131,27 @@ public class MeowOutput {
         line();
     }
 
+    /**
+     * Displays the tasks that match a search query.
+     *
+     * @param tasks the list of all tasks
+     * @param matchedIndices the indices of tasks that match the search query
+     */
 
+    public void showMatchingTasks(ArrayList<Task> tasks, ArrayList<Integer> matchedIndices) {
+        line();
+
+        if (matchedIndices.isEmpty()) {
+            System.out.println("No matching tasks found.");
+            line();
+            return;
+        }
+
+        System.out.println("Here are the matching tasks in your list:");
+        for (int idx : matchedIndices) {
+            System.out.println((idx + 1) + "." + tasks.get(idx));
+        }
+
+        line();
+    }
 }
