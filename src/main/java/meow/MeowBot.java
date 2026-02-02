@@ -128,6 +128,12 @@ public class MeowBot {
            break;
        }
 
+        case FIND: {
+            var matches = meow.findTaskIndices(parsed.getDescription());
+            meowtput.showMatchingTasks(meow.getTasks(), matches);
+            break;
+        }
+
        default:
            throw new MeowException("MEOW! Unknown command.");
        }
