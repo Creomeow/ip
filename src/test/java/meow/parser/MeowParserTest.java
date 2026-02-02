@@ -137,5 +137,18 @@ public class MeowParserTest {
         assertThrows(MeowException.class,
                 () -> MeowParser.parse("event meeting /from 2019-15-10 /to 2019-10-16"));
     }
+
+    @Test
+    void parse_find_noDescription_throws() {
+        MeowException e = assertThrows(MeowException.class, () -> MeowParser.parse("find"));
+        assertEquals("What am I supposed to find?", e.getMessage());
+    }
+
+    @Test
+    void parse_find_success() throws Exception {
+        ParsedInput p = MeowParser.parse("find book");
+        assertEquals(CommandWord.FIND, p.command);
+        assertEquals("book", p.getDescription());
+    }
 }
 
