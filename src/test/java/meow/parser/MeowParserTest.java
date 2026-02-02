@@ -1,12 +1,13 @@
 package meow.parser;
 
-import meow.command.CommandWord;
-import meow.exception.MeowException;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import meow.command.CommandWord;
+import meow.exception.MeowException;
+import org.junit.jupiter.api.Test;
 
 public class MeowParserTest {
 
