@@ -5,9 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Test;
+
 import meow.command.CommandWord;
 import meow.exception.MeowException;
-import org.junit.jupiter.api.Test;
 
 public class MeowParserTest {
 
