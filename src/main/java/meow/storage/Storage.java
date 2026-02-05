@@ -58,7 +58,7 @@ public class Storage {
                 tasks.add(parseTask(line));
             }
         } catch (IOException e) {
-            throw new MeowException("meow.Meow! I couldn't load your saved tasks.");
+            throw new MeowException("Meow! I couldn't load your saved tasks.");
         }
 
         return tasks;
@@ -83,7 +83,7 @@ public class Storage {
                 }
             }
         } catch (IOException e) {
-            throw new MeowException("meow.Meow! I couldn't save your tasks.");
+            throw new MeowException("Meow! I couldn't save your tasks.");
         }
     }
 
@@ -100,7 +100,7 @@ public class Storage {
         String[] parts = line.split(" \\| ");
 
         if (parts.length < 3) {
-            throw new MeowException("meow.Meow! Corrupted save line: " + line);
+            throw new MeowException("Meow! Corrupted save line: " + line);
         }
 
         String type = parts[0];
@@ -113,7 +113,7 @@ public class Storage {
             break;
         case "D":
             if (parts.length < 4) {
-                throw new MeowException("meow.Meow! "
+                throw new MeowException("Meow! "
                         + "Corrupted deadline line: " + line);
             }
 
@@ -122,7 +122,7 @@ public class Storage {
             break;
         case "E":
             if (parts.length < 5) {
-                throw new MeowException("meow.Meow! "
+                throw new MeowException("Meow! "
                         + "Corrupted event line: " + line);
             }
 
@@ -131,7 +131,7 @@ public class Storage {
             task = new Event(parts[2], start, end);
             break;
         default:
-            throw new MeowException("meow.Meow! Unknown task type in save file: " + type);
+            throw new MeowException("Meow! Unknown task type in save file: " + type);
         }
 
         if (isDone) {
@@ -164,7 +164,7 @@ public class Storage {
                     + " | " + e.getStart().toString() + " | " + e.getEnd().toString();
         }
 
-        throw new MeowException("meow.Meow! Unknown task type: " + t.getClass().getName());
+        throw new MeowException("Meow! Unknown task type: " + t.getClass().getName());
     }
 }
 
