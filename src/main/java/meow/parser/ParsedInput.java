@@ -23,6 +23,10 @@ public class ParsedInput {
         this.end = end;
     }
 
+    public CommandWord getCommand() {
+        return command;
+    }
+
     public String getDescription() {
         return description;
     }
