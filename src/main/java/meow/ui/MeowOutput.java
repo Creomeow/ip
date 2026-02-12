@@ -80,6 +80,9 @@ public class MeowOutput {
         sb.append(LINE);
         sb.append("Here are the matching tasks in your list:\n");
         for (int idx : indices) {
+            assert idx >= 0 && idx < tasks.size()
+                    : "Search returned invalid index "
+                    + idx + " for task list of size " + tasks.size();
             sb.append(idx + 1).append(".").append(tasks.get(idx)).append("\n");
         }
         sb.append(LINE);
