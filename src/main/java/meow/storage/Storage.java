@@ -97,6 +97,7 @@ public class Storage {
      */
 
     private Task parseTask(String line) throws MeowException {
+        Task task;
         String[] parts = line.split(" \\| ");
 
         if (parts.length < 3) {
@@ -106,7 +107,6 @@ public class Storage {
         String type = parts[0];
         boolean isDone = parts[1].equals("1");
 
-        Task task;
         switch (type) {
         case "T":
             task = new ToDo(parts[2]);
