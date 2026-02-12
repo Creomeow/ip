@@ -30,15 +30,17 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        String greeting = "Hello! I'm Meow\n" + "What can I do for you?\n";
-        dialogContainer.getChildren().add(
-                DialogBox.getMeowDialog(greeting, meowImage)
-        );
     }
 
     /** Injects the MeowBot instance */
     public void setMeowBot(MeowBot meow) {
         mb = meow;
+        dialogContainer.getChildren().addAll(
+                DialogBox.getMeowDialog(mb.getGreeting(), meowImage),
+                DialogBox.getMeowDialog(mb.getFormattedTasks(), meowImage)
+        );
+
+
     }
 
     /**

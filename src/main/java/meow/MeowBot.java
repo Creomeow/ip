@@ -31,6 +31,25 @@ public class MeowBot {
         }
     }
 
+    /**
+     * Returns the formatted greeting string produced by the UI layer. Intended for GUI callers.
+     *
+     * @return a greeting string (already contains surrounding lines)
+     */
+    public String getGreeting() {
+        return ui.formatGreeting();
+    }
+
+    /**
+     * Returns the formatted task list produced by the UI layer. Intended for GUI callers.
+     *
+     * @return the tasks listing (empty-list message when applicable)
+     */
+
+    public String getFormattedTasks() {
+        return ui.formatTasks(meow.getTasks());
+    }
+
     public String execute(ParsedInput parsed) throws MeowException {
         switch (parsed.getCommand()) {
         case BYE:
