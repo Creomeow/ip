@@ -112,8 +112,8 @@ public class MeowParser {
         }
 
         String description = dParts[0].trim();
-        LocalDate by = DateTimeUtil.parseDate(dParts[1].trim());
-        return ParsedInput.deadline(description, by);
+        LocalDate byDate = DateTimeUtil.parseDate(dParts[1].trim());
+        return ParsedInput.deadline(description, byDate);
     }
 
     /**
@@ -138,8 +138,8 @@ public class MeowParser {
             throw new MeowException("Event format: event <desc> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
         }
 
-        LocalDate start = DateTimeUtil.parseDate(toParts[0]);
-        LocalDate end = DateTimeUtil.parseDate(toParts[1]);
-        return ParsedInput.event(description, start, end);
+        LocalDate startDate = DateTimeUtil.parseDate(toParts[0]);
+        LocalDate endDate = DateTimeUtil.parseDate(toParts[1]);
+        return ParsedInput.event(description, startDate, endDate);
     }
 }

@@ -5,26 +5,26 @@ import meow.util.DateTimeUtil;
 import java.time.LocalDate;
 
 public class Event extends Task {
-    private LocalDate start;
-    private LocalDate end;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    public Event(String description, LocalDate start, LocalDate end) {
+    public Event(String description, LocalDate startDate, LocalDate endDate) {
         super(description);
-        this.start = start;
-        this.end = end;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: "
-                + DateTimeUtil.formatDate(start) + " to: " + DateTimeUtil.formatDate(end) + ")";
+                + DateTimeUtil.formatDate(startDate) + " to: " + DateTimeUtil.formatDate(endDate) + ")";
     }
 
     public LocalDate getStart() {
-        return this.start;
+        return this.startDate;
     }
 
     public LocalDate getEnd() {
-        return this.end;
+        return this.endDate;
     }
 }
