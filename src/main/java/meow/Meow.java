@@ -104,6 +104,7 @@ public class Meow {
         if (index < 0 || index >= tasks.size()) {
             throw new MeowException("That task number doesn't exist.");
         }
+
         return tasks.get(index);
     }
 

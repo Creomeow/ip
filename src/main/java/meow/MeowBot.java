@@ -41,6 +41,9 @@ public class MeowBot {
             return ui.formatTasks(meow.getTasks());
 
         case TODO: {
+            assert parsed.getDescription() != null && !parsed.getDescription().isEmpty()
+                    : "TODO command should have non-empty description";
+
             var todo = new meow.task.ToDo(parsed.getDescription());
             meow.addTask(todo);
             storage.save(meow.getTasks());
@@ -48,6 +51,11 @@ public class MeowBot {
         }
 
         case DEADLINE: {
+            assert parsed.getDescription() != null && !parsed.getDescription().isEmpty()
+                    : "DEADLINE command should have non-empty description";
+            assert parsed.getBy() != null
+                    : "DEADLINE command should have a by date";
+
             var deadline = new meow.task.Deadline(parsed.getDescription(), parsed.getBy());
             meow.addTask(deadline);
             storage.save(meow.getTasks());
@@ -55,13 +63,24 @@ public class MeowBot {
         }
 
         case EVENT: {
-            var event = new meow.task.Event(parsed.getDescription(), parsed.getStart(), parsed.getEnd());
+            assert parsed.getDescription() != null && !parsed.getDescription().isEmpty()
+                    : "EVENT command should have non-empty description";
+            assert parsed.getStart() != null
+                    : "EVENT command should have a start date";
+            assert parsed.getEnd() != null
+                    : "EVENT command should have an end date";
+
+            var event = new meow.task.Event(parsed.getDescription(),
+                    parsed.getStart(), parsed.getEnd());
             meow.addTask(event);
             storage.save(meow.getTasks());
             return ui.formatAddedTask(event, meow.getTasks().size());
         }
 
         case MARK: {
+            assert parsed.getIndex() >= 1
+                    : "MARK command should have index >= 1; got " + parsed.getIndex();
+
             var task = meow.getTask(parsed.getIndex());
             task.markAsDone();
             storage.save(meow.getTasks());
@@ -69,6 +88,9 @@ public class MeowBot {
         }
 
         case UNMARK: {
+            assert parsed.getIndex() >= 1
+                    : "UNMARK command should have index >= 1; got " + parsed.getIndex();
+
             var task = meow.getTask(parsed.getIndex());
             task.markAsUndone();
             storage.save(meow.getTasks());
@@ -76,12 +98,18 @@ public class MeowBot {
         }
 
         case DELETE: {
+            assert parsed.getIndex() >= 1
+                    : "DELETE command should have index >= 1; got " + parsed.getIndex();
+
             var removed = meow.deleteTask(parsed.getIndex());
             storage.save(meow.getTasks());
             return ui.formatDeletedTask(removed, meow.getTasks().size());
         }
 
         case FIND: {
+            assert parsed.getDescription() != null && !parsed.getDescription().isEmpty()
+                    : "FIND command should have non-empty keyword";
+
             var matches = meow.findTaskIndices(parsed.getDescription());
             return ui.formatMatchingTasks(meow.getTasks(), matches);
         }
