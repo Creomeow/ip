@@ -109,20 +109,26 @@ public class Meow {
     }
 
     /**
-     * Finds the indices of tasks that contain the specified command string in their description.
+     * Finds the indices of tasks that match the specified search query.
+     * Supports flexible searching with multiple keywords (OR logic).
+     * Matches if the task description contains any of the keywords.
      *
-     * @param cmd the command string to search for
+     * @param query the search query string (can contain multiple keywords separated by spaces)
      * @return an ArrayList of indices of matching tasks
      */
 
-    public ArrayList<Integer> findTaskIndices(String cmd) {
+    public ArrayList<Integer> findTaskIndices(String query) {
         ArrayList<Integer> matches = new ArrayList<>();
-        String command = cmd.toLowerCase();
+        String[] keywords = query.trim().toLowerCase().split("\\s+");
 
         for (int i = 0; i < tasks.size(); i++) {
-            String taskToCompare = tasks.get(i).getDescription().toLowerCase();
-            if (taskToCompare.contains(command)) {
-                matches.add(i);
+            String taskDescription = tasks.get(i).getDescription().toLowerCase();
+
+            for (String keyword : keywords) {
+                if (!keyword.isEmpty() && taskDescription.contains(keyword)) {
+                    matches.add(i);
+                    break;
+                }
             }
         }
         return matches;
