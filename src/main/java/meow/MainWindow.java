@@ -56,7 +56,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getMeowDialog(response, meowImage)
         );
         userInput.clear();
-        
+
         if (mb.isExiting()) {
             Platform.exit();
         }

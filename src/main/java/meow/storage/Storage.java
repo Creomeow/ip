@@ -111,6 +111,7 @@ public class Storage {
         case "T":
             task = new ToDo(parts[2]);
             break;
+
         case "D":
             if (parts.length < 4) {
                 throw new MeowException("Meow! "
@@ -120,6 +121,7 @@ public class Storage {
             LocalDate by = LocalDate.parse(parts[3]);
             task = new Deadline(parts[2], by);
             break;
+
         case "E":
             if (parts.length < 5) {
                 throw new MeowException("Meow! "
@@ -130,6 +132,7 @@ public class Storage {
             LocalDate end = LocalDate.parse(parts[4].trim());
             task = new Event(parts[2], start, end);
             break;
+            
         default:
             throw new MeowException("Meow! Unknown task type in save file: " + type);
         }
