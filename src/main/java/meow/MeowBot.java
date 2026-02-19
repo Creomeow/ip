@@ -50,6 +50,15 @@ public class MeowBot {
         return ui.formatTasks(meow.getTasks());
     }
 
+    /**
+     * Checks if the application should exit (user entered bye command).
+     *
+     * @return true if the bye command was executed, false otherwise
+     */
+    public boolean isExiting() {
+        return !meow.isActive();
+    }
+
     public String execute(ParsedInput parsed) throws MeowException {
         switch (parsed.getCommand()) {
         case BYE:
