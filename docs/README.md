@@ -203,8 +203,4 @@ MeowBot data is saved in the hard disk automatically when you send the `bye` com
 
 Task data is stored in: `data/meow.txt`
 
-
 ---
-
-*MeowBot v1.0 - Your friendly task management assistant* 🐱
-
